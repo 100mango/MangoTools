@@ -13,6 +13,15 @@
 //将正方形的View裁剪为圆形
 - (void)ClipSquareViewToRound;
 
+//添加边框
+- (void)addBottomBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
+
+- (void)addLeftBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
+
+- (void)addRightBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
+
+- (void)addTopBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
+
 
 
 //封装gestureRecognizer到UIView中，用的时候直接把需触发的block传入即可
