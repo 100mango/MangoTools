@@ -1,8 +1,3 @@
-/*
- Erica Sadun, http://ericasadun.com
- iPhone Developer's Cookbook 3.x and beyond
- BSD License, Use at your own risk
- */
 
 #import <Foundation/Foundation.h>
 
@@ -44,6 +39,7 @@
 - (BOOL) isToday;
 - (BOOL) isTomorrow;
 - (BOOL) isYesterday;
+//新添加
 - (BOOL) isTheDayAfterTomorrow;
 
 - (BOOL) isSameWeekAsDate: (NSDate *) aDate;
