@@ -9,3 +9,14 @@ MyTools_iOS
 
 **layer**
 便捷地修改UIView的layer属性，添加不同方向的border,裁剪为圆
+
+###2.NSDate+Utilities
+便捷的时间对比与计算。
+例如：
+
+~~~obj-c
+- (BOOL) isToday;
+- (BOOL) isTomorrow;
+- (BOOL) isYesterday;
+- (BOOL) isTheDayAfterTomorrow;
+~~~
