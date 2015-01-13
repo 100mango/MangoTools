@@ -10,6 +10,7 @@ MyTools_iOS
 **layer**
 便捷地修改UIView的layer属性，添加不同方向的border,裁剪为圆
 
+
 ###2.NSDate+Utilities
 便捷的时间对比与计算。
 例如：
@@ -20,3 +21,7 @@ MyTools_iOS
 - (BOOL) isYesterday;
 - (BOOL) isTheDayAfterTomorrow;
 ~~~
+
+
+###3.JZLocationConverter
+便捷的地理位置坐标转换器，将火星坐标转到地球坐标等便捷中国特色功能
