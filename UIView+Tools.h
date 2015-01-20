@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+AnimationExtensions.h"
 
 @interface UIView (Tools)
 
@@ -23,6 +24,7 @@
 - (void)addTopBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
 
 //anmation helper
+//请使用UIView+AnimationExtensions.h
 /**
  *  旋转view
  *  @param angle 弧度：PI = 360度
