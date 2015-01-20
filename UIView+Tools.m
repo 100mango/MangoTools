@@ -54,6 +54,13 @@ static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedVie
     [self.layer addSublayer:border];
 }
 
+#pragma mark -animation
+- (void)rotateViewWithAngle:(CGFloat)angle
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.transform = CGAffineTransformMakeRotation(angle);
+    }];
+}
 
 #pragma mark -handel action
 - (void)touchEndedBlock:(void (^)(UIView *selfView))block

@@ -22,6 +22,12 @@
 
 - (void)addTopBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
 
+//anmation helper
+/**
+ *  旋转view
+ *  @param angle 弧度：PI = 360度
+ */
+- (void)rotateViewWithAngle:(CGFloat)angle;
 
 
 //封装gestureRecognizer到UIView中，用的时候直接把需触发的block传入即可
