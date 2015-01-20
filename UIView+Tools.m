@@ -55,9 +55,9 @@ static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedVie
 }
 
 #pragma mark -animation
-- (void)rotateViewWithAngle:(CGFloat)angle
+- (void)rotateViewWithAngle:(CGFloat)angle andDuration:(CGFloat)duration
 {
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:duration animations:^{
         self.transform = CGAffineTransformMakeRotation(angle);
     }];
 }
