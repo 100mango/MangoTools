@@ -59,11 +59,11 @@
     }
 }
 
-- (BOOL)isCarNumber:(NSString*)carNumber
+- (BOOL)isCarNumber
 {
     NSString *carRegex = @"^[A-Za-z_0-9]{5}$";
     NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-    return [carTest evaluateWithObject:carNumber];
+    return [carTest evaluateWithObject:self];
 }
 
 @end
