@@ -29,3 +29,13 @@ MyTools_iOS
 
 ###4.HudTools
 便捷的hud通知调用，全部通过类方法调用。方便快捷。
+
+
+###5.NSString+Tools.h
+一些检测String的便捷方法 封装了正则匹配
+
+~~~objective-c
+- (BOOL)isMobileNumber:(NSString *)mobileNum
+- (BOOL)isCarNumber;
+
+~~~
