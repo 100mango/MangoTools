@@ -32,10 +32,10 @@ MyTools_iOS
 
 
 ###5.NSString+Tools.h
-一些检测String的便捷方法 封装了正则匹配
+一些检测String的便捷方法 封装了正则匹配等一些匹配。
 
 ~~~objective-c
 - (BOOL)isMobileNumber:(NSString *)mobileNum
 - (BOOL)isCarNumber;
-
+- (BOOL)isURL;
 ~~~

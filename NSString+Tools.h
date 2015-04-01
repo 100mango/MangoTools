@@ -10,7 +10,7 @@
 
 @interface NSString (Tools)
 
-- (BOOL)isMobileNumber:(NSString *)mobileNum
+- (BOOL)isMobileNumber:(NSString *)mobileNum;
 
 //只检查车牌号 （不包括缩写与英文代号：例如：京A)
 - (BOOL)isCarNumber;

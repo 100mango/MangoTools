@@ -66,4 +66,15 @@
     return [carTest evaluateWithObject:self];
 }
 
+- (BOOL)isURL
+{
+    NSURL *url = [NSURL URLWithString:self];
+    if (url) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
 @end
