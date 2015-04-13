@@ -15,4 +15,7 @@
 //只检查车牌号 （不包括缩写与英文代号：例如：京A)
 - (BOOL)isCarNumber;
 
+//构造URL,如果没有http前缀,则添加
++(NSURL *)HTTPURLFromString:(NSString *)string;
+
 @end

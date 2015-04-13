@@ -38,4 +38,5 @@ MyTools_iOS
 - (BOOL)isMobileNumber:(NSString *)mobileNum
 - (BOOL)isCarNumber;
 - (BOOL)isURL;
++ (NSURL *)HTTPURLFromString:(NSString *)string;
 ~~~
