@@ -69,7 +69,7 @@
 - (BOOL)isURL
 {
     NSURL *url = [NSURL URLWithString:self];
-    if (url) {
+    if (url && url.host) {
         return YES;
     }
     else
