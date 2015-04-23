@@ -22,6 +22,29 @@ static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedVie
     }
 }
 
++ (UIImage *)imageWithRoundedCornersSize:(float)cornerRadius usingImage:(UIImage *)original
+{
+    CGRect frame = CGRectMake(0, 0, original.size.width, original.size.height);
+    
+    // Begin a new image that will be the new image with the rounded corners
+    // (here with the size of an UIImageView)
+    UIGraphicsBeginImageContextWithOptions(original.size, NO, 1.0);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    [[UIBezierPath bezierPathWithRoundedRect:frame
+                                cornerRadius:cornerRadius] addClip];
+    // Draw your image
+    [original drawInRect:frame];
+    
+    // Get the image, here setting the UIImageView image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // Lets forget about that we were drawing
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 - (void)addTopBorderWithColor:(UIColor *)color andWidth:(CGFloat) borderWidth {
     CALayer *border = [CALayer layer];
     border.backgroundColor = color.CGColor;

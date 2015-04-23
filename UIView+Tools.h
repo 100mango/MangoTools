@@ -14,6 +14,9 @@
 //将正方形的View裁剪为圆形
 - (void)ClipSquareViewToRound;
 
+//裁剪图片圆角 比直接使用cornerRadius更高效
++ (UIImage *)imageWithRoundedCornersSize:(float)cornerRadius usingImage:(UIImage *)original
+
 //添加边框
 - (void)addBottomBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
 
