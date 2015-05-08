@@ -40,3 +40,14 @@ MyTools_iOS
 - (BOOL)isURL;
 + (NSURL *)HTTPURLFromString:(NSString *)string;
 ~~~
+
+###6.NSObject+Macro
+一些常用的宏：
+
+例如检测设备
+
+~~~objective-c
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+~~~
