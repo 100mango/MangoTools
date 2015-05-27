@@ -51,3 +51,13 @@ MyTools_iOS
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 ~~~
+
+定制NSLog:
+
+~~~objective-c
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__,  ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+~~~
