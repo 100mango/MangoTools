@@ -61,3 +61,25 @@ MyTools_iOS
 #   define DLog(...)
 #endif
 ~~~
+
+###7.EXTScope
+来自[libextobjc](https://github.com/jspahrsummers/libextobjc)中的一个模块。感谢它为我们带来方便打破block循环引用的工具。
+
+用法:
+
+~~~objective-c
+@weakify(self)
+[self.context performBlock:^{
+    // Analog to strongSelf in previous code snippet.
+    @strongify(self)
+
+    // You can just reference self as you normally would. Hurray.
+    NSError *error;
+    [self.context save:&error];
+
+    // Do something
+}];
+~~~
+
+延伸:
+[iOS夯实：ARC时代的内存管理](https://github.com/100mango/zen/blob/master/iOS%E5%A4%AF%E5%AE%9E%EF%BC%9AARC%E6%97%B6%E4%BB%A3%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%23iOS%E5%A4%AF%E5%AE%9E%EF%BC%9AARC%E6%97%B6%E4%BB%A3%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
