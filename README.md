@@ -1,6 +1,6 @@
-MyTools_iOS
+MangoTools
 ===========
-#个人收集与编写维护的一个iOS开发工具库
+个人收集整理与编写维护的一个iOS开发工具库
 
 ###1.UIView+Tools 
 **recognizer封装**
@@ -12,6 +12,7 @@ MyTools_iOS
 
 
 ###2.NSDate+Utilities
+
 便捷的时间对比与计算。
 例如：
 
@@ -23,7 +24,8 @@ MyTools_iOS
 ~~~
 
 
-###3.JZLocationConverter
+###3.[JZLocationConverter](https://github.com/JackZhouCn/JZLocationConverter)
+
 便捷的地理位置坐标转换器，将火星坐标转到地球坐标等便捷中国特色功能
 
 
