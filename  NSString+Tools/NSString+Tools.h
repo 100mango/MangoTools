@@ -18,4 +18,6 @@
 //构造URL,如果没有http前缀,则添加
 +(NSURL *)HTTPURLFromString:(NSString *)string;
 
+//返回构造好的时间字符串  60s-> 00:00:60
++ (NSString *)timeStringFromSeconds:(int)totalSeconds;
 @end
