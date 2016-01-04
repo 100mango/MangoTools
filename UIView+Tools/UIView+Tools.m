@@ -77,6 +77,22 @@ static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedVie
     [self.layer addSublayer:border];
 }
 
+- (UIImage *)renderWithBounds:(CGRect)frame {
+    
+    CGSize imageSize = frame.size;
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    
+    CGContextConcatCTM(c, CGAffineTransformMakeTranslation(-frame.origin.x, -frame.origin.y));
+    [self.layer renderInContext:c];
+    
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenshot;
+    
+}
+
 #pragma mark -animation
 - (void)rotateViewWithAngle:(CGFloat)angle andDuration:(CGFloat)duration
 {

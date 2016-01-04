@@ -17,6 +17,14 @@
 //裁剪图片圆角 比直接使用cornerRadius更高效
 + (UIImage *)imageWithRoundedCornersSize:(float)cornerRadius usingImage:(UIImage *)original
 
+/**
+ *  将UIView转换为image
+ *
+ *  @param frame 要显示的部分
+ *
+ */
+- (UIImage *) renderWithBounds:(CGRect)frame;
+
 //添加边框
 - (void)addBottomBorderWithColor: (UIColor *) color andWidth:(CGFloat) borderWidth;
 
