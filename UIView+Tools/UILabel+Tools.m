@@ -44,4 +44,40 @@
     self.text = nil;
     self.attributedText = attributeStr;
 }
+
+- (void)adjustFontSizeToFitBounds
+{
+    //从最大字号放缩到最小字号
+    int fontSize = 14;
+    int minFontSize = 1;
+    
+    CGSize constraintSize = CGSizeMake(self.frame.size.width, MAXFLOAT);
+    CGRect textRect;
+    
+    do {
+        self.font = [UIFont fontWithName:self.font.fontName size:fontSize];
+        
+        //获得当前字号所需的label大小
+        textRect = [self.text boundingRectWithSize:constraintSize
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:self.font}
+                                           context:nil];
+        
+        // 如果估算label大小在我们员Label的大小,则找到,否则缩小字号继续寻找
+        if( textRect.size.height <= self.frame.size.height){
+            break;
+        }
+        
+        fontSize -= 1;
+        
+    } while (fontSize > minFontSize);
+    
+    //如果只有一行 则居中
+    if (floor((textRect.size.height / self.font.lineHeight)) == 1) {
+        self.textAlignment = NSTextAlignmentCenter;
+    }else{
+        self.textAlignment = NSTextAlignmentLeft;
+    }
+    
+}
 @end

@@ -10,5 +10,6 @@
 @interface UILabel (Tools)
 
 - (void)setText:(NSString *)text highlightKeyWord:(NSArray *)keywords highlightColor:(UIColor*)color;
+- (void)adjustFontSizeToFitBounds;
 
 @end
