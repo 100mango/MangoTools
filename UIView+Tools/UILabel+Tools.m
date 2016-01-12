@@ -51,20 +51,17 @@
     int fontSize = 14;
     int minFontSize = 1;
     
+    // Fit label width wize
     CGSize constraintSize = CGSizeMake(self.frame.size.width, MAXFLOAT);
-    CGRect textRect;
+    CGSize textSize;
     
     do {
         self.font = [UIFont fontWithName:self.font.fontName size:fontSize];
         
         //获得当前字号所需的label大小
-        textRect = [self.text boundingRectWithSize:constraintSize
-                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:self.font}
-                                           context:nil];
-        
-        // 如果估算label大小在我们员Label的大小,则找到,否则缩小字号继续寻找
-        if( textRect.size.height <= self.frame.size.height){
+        textSize = [self sizeThatFits:constraintSize];
+        // 如果估算label大小小于实际Label的大小,则找到,否则缩小字号继续寻找
+        if( textSize.height <= self.frame.size.height){
             break;
         }
         
@@ -73,7 +70,7 @@
     } while (fontSize > minFontSize);
     
     //如果只有一行 则居中
-    if (floor((textRect.size.height / self.font.lineHeight)) == 1) {
+    if (floor((textSize.height / self.font.lineHeight)) == 1) {
         self.textAlignment = NSTextAlignmentCenter;
     }else{
         self.textAlignment = NSTextAlignmentLeft;
