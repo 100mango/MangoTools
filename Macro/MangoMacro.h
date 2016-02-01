@@ -1,12 +1,12 @@
 //
-//  NSObject+Macro.h
-//  QRCatcher
+//  MangoMacro.h
 //
-//  Created by Mango on 15/5/8.
-//  Copyright (c) 2015年 Mango. All rights reserved.
+//  Created by Mango on 16/2/1.
+//  Copyright © 2016年 Mango. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef MangoMacro_h
+#define MangoMacro_h
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -30,6 +30,4 @@
 #   define DLog(...)
 #endif
 
-@interface NSObject (Macro)
-
-@end
+#endif /* MangoMacro_h */
