@@ -53,3 +53,8 @@
 
 - (void)longPressEndedGesture:(UIGestureRecognizer*)gesture;
 @end
+
+
+@interface UIImage (Tools)
+- (UIImage *)drawImage:(UIImage *)inputImage inRect:(CGRect)frame;
+@end
