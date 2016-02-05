@@ -43,6 +43,8 @@
 - (void)rotateViewWithAngle:(CGFloat)angle andDuration:(CGFloat)duration;
 
 
+//设置anchorPoint,不改变origin
+- (void)setAnchorPointAndRemainOrigin:(CGPoint)anchorPoint;
 
 //封装gestureRecognizer到UIView中，用的时候直接把需触发的block传入即可
 - (void)touchEndedBlock:(void(^)(UIView *selfView))block;

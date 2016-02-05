@@ -93,6 +93,20 @@ static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedVie
     
 }
 
+- (void)setAnchorPointAndRemainOrigin:(CGPoint)anchorPoint;
+{
+    CGPoint oldOrigin = self.frame.origin;
+    self.layer.anchorPoint = anchorPoint;
+    CGPoint newOrigin = self.frame.origin;
+    
+    CGPoint transition;
+    transition.x = newOrigin.x - oldOrigin.x;
+    transition.y = newOrigin.y - oldOrigin.y;
+    
+    self.center = CGPointMake (self.center.x - transition.x, self.center.y - transition.y);
+}
+
+
 #pragma mark -animation
 - (void)rotateViewWithAngle:(CGFloat)angle andDuration:(CGFloat)duration
 {
