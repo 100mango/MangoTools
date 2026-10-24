@@ -2,6 +2,50 @@
 
 个人收集整理与编写维护的一个 iOS 开发工具库
 
+
+## Swift Package Manager
+
+新增 SwiftPM 包配置，要求 Swift 5.5+，新包声明 iOS 9.0+。UIKit / Objective-C 功能需要
+使用 Xcode 的 iOS SDK 构建，不能在 Linux 或 macOS 命令行目标下直接使用。
+导出源码不需要 iOS 12 新 API；iOS 9 是新包的兼容性下限声明，尚不代表旧设备已验证。
+当前测试脚本单独使用 iOS 15+ 模拟器测试部署目标，不改变库的最低系统版本，
+也不改变手动复制源码使用方自己的 deployment target。较老系统需要选用仍支持它的 Xcode。
+
+这是**有明确排除项的迁移**，不是所有历史 API 的无缝升级：
+`StructCoding.swift` 的任意结构体原始内存序列化不安全，`HudTools` 的
+SVProgressHUD 依赖缺失且调用了历史 API，因此两者保留原文件，但不导出到 SwiftPM。
+具体兼容范围、迁移选项和验证方式见
+[SwiftPM 迁移说明](Documentation/SwiftPM-Migration.md)。
+
+在 Xcode 选择 File → Add Package Dependencies，输入本仓库 URL，选择 `0.1.0` 或更新的兼容版本，
+添加 `MangoTools` product。第一个 SwiftPM 版本为 `v0.1.0`，其范围明确不含上述两个历史模块：
+
+```swift
+// In your Package.swift dependencies:
+.package(url: "https://github.com/100mango/MangoTools.git", from: "0.1.0")
+
+// In your target dependencies:
+.product(name: "MangoTools", package: "MangoTools")
+```
+
+```swift
+import UIKit
+import MangoTools      // Swift UIView / cell helpers
+import MangoToolsObjC  // Objective-C utilities, when needed
+
+let view = UIView()
+view.width = 120
+```
+
+只有 Objective-C 工具的使用方可以选择 `MangoToolsObjC` product，通过
+`@import MangoToolsObjC;` 使用。原有源文件路径保留，不要同时手动编译相同文件，
+以免产生重复符号。新增的测试可在装有 iOS Simulator 的 Mac 上运行：
+
+```sh
+Scripts/test-ios.sh
+```
+
+
 ### 1.UIView+Tools 
 
 **recognizer 封装**

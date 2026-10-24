@@ -10,6 +10,8 @@
 //
 
 
+#import <UIKit/UIKit.h>
+
 /**
  @brief Direction of flip animation.
  */

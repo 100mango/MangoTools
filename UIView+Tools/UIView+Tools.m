@@ -7,6 +7,7 @@
 //
 
 #import "UIView+Tools.h"
+#import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 static const void *BGTouchEndedViewBlockKey = &BGTouchEndedViewBlockKey;
 static const void *BGTouchLongPressEndedViewBlockKey = &BGTouchLongPressEndedViewBlockKey;

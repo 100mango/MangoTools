@@ -1,0 +1,30 @@
+name: Released version consumer
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published semantic version without v prefix
+        required: true
+        default: '0.1.0'
+
+permissions:
+  contents: read
+
+jobs:
+  released-version:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Resolve and test the exact remote release tag
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          version="${REQUESTED_VERSION:-${RELEASE_TAG#v}}"
+          MANGOTOOLS_VERSION="$version" Scripts/test-consumer-ios.sh
