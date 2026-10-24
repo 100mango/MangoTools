@@ -11,6 +11,7 @@
 
 
 #import "UIView+AnimationExtensions.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation UIView (AnimationExtensions)

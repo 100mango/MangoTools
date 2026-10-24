@@ -15,7 +15,7 @@
 - (void)ClipSquareViewToRound;
 
 //裁剪图片圆角 比直接使用cornerRadius更高效
-+ (UIImage *)imageWithRoundedCornersSize:(float)cornerRadius usingImage:(UIImage *)original
++ (UIImage *)imageWithRoundedCornersSize:(float)cornerRadius usingImage:(UIImage *)original;
 
 /**
  *  将UIView转换为image

@@ -200,7 +200,7 @@
     UIFont *font = [self fontAtIndex:range.location longestEffectiveRange:&range inRange:rangeLimit];
     
     if (italic != font.italic)
-        [self addFont:[UIFont fontWithFont:font italic:bold] range:range];
+        [self addFont:[UIFont fontWithFont:font italic:italic] range:range];
     
     while (NSMaxRange(range) < NSMaxRange(rangeLimit))
     {
@@ -209,7 +209,7 @@
         
         UIFont *nextFont = [self fontAtIndex:range.location longestEffectiveRange:&range inRange:rangeLimit];
         if (italic != nextFont.italic)
-            [self addFont:[UIFont fontWithFont:nextFont italic:bold] range:range];
+            [self addFont:[UIFont fontWithFont:nextFont italic:italic] range:range];
     }
 }
 
