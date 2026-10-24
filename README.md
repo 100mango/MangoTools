@@ -17,13 +17,12 @@ SVProgressHUD 依赖缺失且调用了历史 API，因此两者保留原文件�
 具体兼容范围、迁移选项和验证方式见
 [SwiftPM 迁移说明](Documentation/SwiftPM-Migration.md)。
 
-在 Xcode 选择 File → Add Package Dependencies，输入本仓库 URL，选择包含
-`Package.swift` 的分支或提交（历史 tag 不一定含包配置），添加 `MangoTools` product。
-也可以先用本地路径验证：
+在 Xcode 选择 File → Add Package Dependencies，输入本仓库 URL，选择 `0.1.0` 或更新的兼容版本，
+添加 `MangoTools` product。第一个 SwiftPM 版本为 `v0.1.0`，其范围明确不含上述两个历史模块：
 
 ```swift
 // In your Package.swift dependencies:
-.package(path: "../MangoTools")
+.package(url: "https://github.com/100mango/MangoTools.git", from: "0.1.0")
 
 // In your target dependencies:
 .product(name: "MangoTools", package: "MangoTools")

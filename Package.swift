@@ -49,7 +49,7 @@ let package = Package(
         ),
         .testTarget(
             name: "MangoToolsTests",
-            dependencies: ["MangoTools", "MangoToolsObjCTestSupport"],
+            dependencies: ["MangoTools", "MangoToolsObjC", "MangoToolsObjCTestSupport"],
             path: "Tests/MangoToolsTests"
         )
     ],

@@ -110,9 +110,13 @@ installed device. It does not install runtimes, sign/upload an app, or publish a
 release. `.github/workflows/swift-package.yml` runs the same script on a standard
 `macos-15` runner with read-only repository permissions and a 15-minute timeout.
 
-Tests cover Swift geometry, responder traversal, reuse identifiers and typed
-registration/dequeue; Objective-C strings, relative dates, italic/bold changes,
-view borders/gestures/animations, labels, and EXTScope cleanup. They are focused
+The 24 library regression tests cover Swift geometry (including zero/fractional
+sizes and independent axes), responder traversal and detachment, independent cell
+registrations, Objective-C string/URL/date boundaries, attributed subranges and
+trait reversal, border geometry, anchor points, gesture replacement/removal,
+label matches/empty input, image rendering/composition, and scope cleanup order.
+Two additional tests run from a separate consumer package, importing only public
+modules and checking both products, Objective-C categories, and NSIndexPath bridging. They are focused
 regression tests, not a claim to audit every existing utility's semantics or
 thread safety. MangoLog's file-writing behavior is not exercised by this suite.
 
@@ -120,6 +124,15 @@ On a non-Apple host only `swift package dump-package`, `swift package describe`,
 and Swift syntax parsing can be checked. Passing those checks is not an iOS
 compile or test pass. Keep the migration in review until Apple SDK validation
 passes. The excluded APIs remain follow-on work even after that pass.
+
+## Versioned consumption
+
+`v0.1.0` is the first SwiftPM release, deliberately scoped to the exported subset.
+The normal CI also builds and tests `Tests/VersionConsumer` against the checkout.
+After a release is published, `release-consumer.yml` creates a fresh consumer
+package, resolves the exact remote semver, checks that `Package.resolved` points
+to that tag's commit, and runs the two consumer XCTest cases on iOS Simulator.
+It does not use a local path dependency in the release job.
 
 ## Licensing
 

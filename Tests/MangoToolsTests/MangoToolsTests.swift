@@ -2,6 +2,7 @@ import XCTest
 import UIKit
 @testable import MangoTools
 import MangoToolsObjCTestSupport
+import MangoToolsObjC
 
 // Only the test harness requires Swift concurrency-era actor annotations.
 // The library itself has no concurrency dependency and retains its iOS 9 floor.
@@ -84,6 +85,78 @@ final class MangoToolsTests: XCTestCase {
     func testObjectiveCScopeCleanup() {
         XCTAssertTrue(MangoToolsScopeUtilitiesWork())
     }
+    @MainActor
+    func testZeroSizeEdgesAndFractionalGeometry() {
+        let view = UIView(frame: .zero)
+        view.right = -2.5
+        view.bottom = 3.25
+        XCTAssertEqual(view.origin, CGPoint(x: -2.5, y: 3.25))
+        view.size = CGSize(width: 4.5, height: 6.75)
+        view.right = 10.25
+        view.bottom = 20.5
+        XCTAssertEqual(view.left, 5.75)
+        XCTAssertEqual(view.top, 13.75)
+        let unchangedY = view.centerY
+        view.centerX = -100.5
+        XCTAssertEqual(view.centerY, unchangedY)
+        let unchangedX = view.centerX
+        view.centerY = 200.25
+        XCTAssertEqual(view.centerX, unchangedX)
+        XCTAssertEqual(view.size, CGSize(width: 4.5, height: 6.75))
+    }
+
+    @MainActor
+    func testResponderTraversalAfterDetachingNestedView() {
+        let controller = UIViewController()
+        let container = UIView()
+        let child = UIView()
+        controller.view.addSubview(container)
+        container.addSubview(child)
+        XCTAssertTrue(child.parentViewController === controller)
+        container.removeFromSuperview()
+        XCTAssertNil(child.parentViewController)
+        controller.view.addSubview(container)
+        XCTAssertTrue(child.parentViewController === controller)
+    }
+
+    @MainActor
+    func testIndependentCellSubclassRegistrations() {
+        let table = UITableView(frame: .zero, style: .plain)
+        table.registerClass(ExampleTableCell.self)
+        table.registerClass(SecondTableCell.self)
+        let path = IndexPath(row: 0, section: 0) as NSIndexPath
+        let first: ExampleTableCell = table.dequeueReusableCellForIndexPath(path)
+        let second: SecondTableCell = table.dequeueReusableCellForIndexPath(path)
+        XCTAssertNotEqual(first.reuseIdentifier, second.reuseIdentifier)
+        XCTAssertEqual(first.reuseIdentifier, ExampleTableCell.defaultReuseIdentifier)
+        XCTAssertEqual(second.reuseIdentifier, SecondTableCell.defaultReuseIdentifier)
+        XCTAssertEqual(path as IndexPath, IndexPath(row: 0, section: 0))
+    }
+
+    func testObjectiveCModuleExportsLoggingClass() {
+        // A public import, not @testable, must expose the Objective-C class.
+        XCTAssertEqual(NSStringFromClass(MangoLog.self), "MangoLog")
+    }
+
+    func testObjectiveCStringFormattingAndValidationBoundaries() { XCTAssertTrue(MangoToolsStringBoundariesWork()) }
+    func testObjectiveCURLSchemePreservation() { XCTAssertTrue(MangoToolsURLSchemesWork()) }
+    func testObjectiveCDateIntervalBoundaries() { XCTAssertTrue(MangoToolsDateBoundariesWork()) }
+    @MainActor
+    func testObjectiveCAttributedSubrangesAndTraitReversal() { XCTAssertTrue(MangoToolsAttributedSubrangesWork()) }
+    @MainActor
+    func testObjectiveCAttributedDefaultsAndInvalidFont() { XCTAssertTrue(MangoToolsAttributedDefaultsWork()) }
+    @MainActor
+    func testObjectiveCAllBorderFramesAndNonSquareClipping() { XCTAssertTrue(MangoToolsBorderGeometryWorks()) }
+    @MainActor
+    func testObjectiveCAnchorChangesPreserveFrame() { XCTAssertTrue(MangoToolsAnchorPointPreservesOrigin()) }
+    @MainActor
+    func testObjectiveCGestureReplacementAndRemoval() { XCTAssertTrue(MangoToolsGestureReplacementWorks()) }
+    @MainActor
+    func testObjectiveCLabelMultipleMatchesAndEmptyInput() { XCTAssertTrue(MangoToolsLabelBoundariesWork()) }
+    @MainActor
+    func testObjectiveCImageRenderingAndComposition() { XCTAssertTrue(MangoToolsImageRenderingWorks()) }
+    func testObjectiveCScopeCleanupReverseOrder() { XCTAssertTrue(MangoToolsScopeExitOrderWorks()) }
+
 }
 
 private final class ExampleTableCell: UITableViewCell {}
@@ -99,3 +172,5 @@ private final class ExampleCollectionDataSource: NSObject, UICollectionViewDataS
         return cell
     }
 }
+
+private final class SecondTableCell: UITableViewCell {}
