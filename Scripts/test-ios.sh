@@ -50,7 +50,7 @@ fi
 # Keep the test harness deployment separate from the library's iOS 9 floor.
 # Swift 5.5 originally introduced actor annotations alongside iOS 15.
 xcodebuild \
-  -scheme MangoTools \
+  -scheme MangoTools-Package \
   -destination "platform=iOS Simulator,id=${SIMULATOR_ID}" \
   -destination-timeout 180 \
   -parallel-testing-enabled NO \
